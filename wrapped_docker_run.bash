@@ -9,7 +9,7 @@ docker run -e XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
            -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
            -v ~/.Xauthority:/home/ros/.Xauthority \
            --rm \
-           --name rover-simulation \
+           --name ros-final \
            --entrypoint /home/ros/entrypoint_simulation.bash \
            ros_gazebo &&
 xhost -SI:localuser:${USER}
