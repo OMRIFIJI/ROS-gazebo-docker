@@ -5,10 +5,11 @@ docker run -e XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
            -e DISPLAY=$DISPLAY \
            --gpus all \
            --ulimit nofile=1024:524288 \
+           --user ros \
            -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
            -v ~/.Xauthority:/home/ros/.Xauthority \
-           --name ros-dev \
-           --user ros \
-           -dt \
-           ros-gazebo &&
+           --rm \
+           --name rover-simulation \
+           --entrypoint /home/ros/entrypoint_simulation.bash \
+           ros_gazebo &&
 xhost -SI:localuser:${USER}

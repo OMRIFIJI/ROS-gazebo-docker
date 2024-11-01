@@ -1,8 +1,7 @@
 services:
   rover-simulation:
     image: ros-gazebo
-    tty: true
-    container_name: ros-dev
+    container_name: ros-final
     user: ros
     environment:
       - DISPLAY=$DISPLAY
@@ -11,6 +10,7 @@ services:
       - /dev/dri:/dev/dri
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ${HOME}/.Xauthority:/home/ros/.Xauthority 
+    entrypoint: /home/ros/entrypoint_simulation.bash
     deploy:
       resources:
         reservations:

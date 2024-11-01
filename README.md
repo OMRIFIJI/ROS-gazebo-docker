@@ -1,25 +1,23 @@
 # Dockerized ROS and Gazebo
 
 ## Overview
-This is a setup that I use for ROS development. 
-It consists of ROS noetic desktop and Gazebo.
-Checkout original repository for [dockerfile](https://github.com/athackst/dockerfiles) of this branch.
+This is a setup that I use to dockerize final versions of ROS projects.
+It consists only of ROS noetic base and Gazebo. All dependencies should be added in Dockerfile manually.
 This dockerfile adds support for GUI apps on machines with nvidia cards. 
-
-If you are looking for dockerizing final version of your simulation take a look at 
-[exec-only-base](https://github.com/OMRIFIJI/ROS-gazebo-docker/tree/exec-only-base) branch.
-It uses more lightweight dockerfile and dockerizes workspace instead of mounting it.
+Your `catkin_ws` will be copied inside container by default. 
+If you want to mount it make according changes to dockerfile and *docker run*/*docker compose*.
 
 ## Quick start
 It is expected that your `catkin_ws` is located inside this directory.
 If you are using nvidia card the following will be sufficient:
 * `git clone https://github.com/OMRIFIJI/ROS-gazebo-docker.git`
 * `cd ROS-gazebo-docker`
+* Include additional dependencies in Dockerfile
 * `docker build -t 'ros-gazebo' .`
+* define entrypoint of your project in `entrypoint_simulation.bash` script
 * Choose one of 2 approaches (more about it in GUI section):
     1. `docker compose up`
     2. `./wrapped_docker_run.bash`
-* Now you can enter container with bash: `docker exec -it ros-dev bash`
 
 ## Graphics card
 If you don't use nvidia card mounting your device should be sufficient.
